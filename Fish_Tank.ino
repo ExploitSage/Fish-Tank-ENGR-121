@@ -14,13 +14,17 @@ void setup() {
 }
 
 void loop() {
-  if(!thermister.is_in_tolerance()) {
+  if(!thermister.is_in_tolerance())
     heater.set(true);
-  } else {
+  else
     heater.set(false);
-  }
+  
   if(salinometer.is_high()) {
+    salt_solenoid.set(false);
+    fresh_solenoid.set(true);
   } else if(salinometer.is_low()) {
+    salt_solenoid.set(true);
+    fresh_solenoid.set(false);
   } else {
     salt_solenoid.set(false);
     fresh_solenoid.set(false);
