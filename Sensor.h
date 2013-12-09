@@ -1,29 +1,29 @@
 /**
- * Salinometer.h
- * Purpose: Wrapper for Voltage Divider Thermal Meter
+ * Sensor.h
+ * Purpose: Wrapper for Voltage Divider Salinity Meter
  * 
  * @author <a href="mailto:gus3@michelfamily.org">Gustave A. Michel III</a>
- * @version 1.0 12/07/13
+ * @version 1.1 12/09/13
  * @license The GNU Pulic Liscense v3
  */
-#ifndef Thermister_h
-#define Thermister_h
+ #ifndef Sensor_h
+#define Sensor_h
 
 #include "Arduino.h"
 
-class Thermister {
+class Sensor {
   public:
     /**
      * Empty constructor, an init() method must be called before instance use
      * @since v1.0
      */
-    Thermister();
+    Sensor();
     /**
      * Constructor, doesn't allow use of is_in_tolerance().
      * @param pin Analog Pin of sensor
      * @since v1.0
      */
-    Thermister(uint8_t pin);
+    Sensor(uint8_t pin);
     /**
      * Constructor
      * @param pin Analog Pin of sensor
@@ -31,15 +31,15 @@ class Thermister {
      * @param upper_limit Upper limit calibration
      * @since v1.0
      */
-    Thermister(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit);
+    Sensor(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit);
     /** 
-     * Initializes Salinometer after empty constructor, doesn't allow use of is_in_tolerance().
+     * Initializes Sensor after empty constructor, doesn't allow use of is_in_tolerance().
      * @param pin Analog Pin of sensor
      * @since v1.0
      */
     void init(uint8_t pin);
     /**
-     * Initializes Salinometer after empty constructor.
+     * Initializes Sensor after empty constructor.
      * @param pin Analog Pin of sensor
      * @param lower_limit Lower limit calibration
      * @param upper_limit Upper limit calibration
@@ -55,6 +55,16 @@ class Thermister {
      * @return if the value is between the limits
      */
     bool is_in_tolerance();
+    /**
+     * Checks if the sensor is above the upper limit
+     * @return if the value of the sensor is above the upper limit
+     */
+    bool is_high();
+    /**
+     * Checks if the sensor is below the lower limit
+     * @return if the value of the sensor is below the lower limit
+     */
+    bool is_low();
     /**
      * Sets the calibration limits, allows use of is_in_tolerance()
      */

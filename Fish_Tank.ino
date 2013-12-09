@@ -1,10 +1,9 @@
 #include "Relay.h"
-#include "Salinometer.h"
-#include "Thermister.h"
+#include "Sensor.h"
 
 Relay heater, salt_solenoid, fresh_solenoid;
-Salinometer salinometer;
-Thermister thermister;
+Sensor salinometer;
+Sensor thermister;
 
 void setup() {
   heater.init(10, false);
@@ -15,16 +14,15 @@ void setup() {
 }
 
 void loop() {
-  heater.set(!heater.get());
-  delay(50);
-  salt_solenoid.set(!salt_solenoid.get());
-  delay(50);
-  fresh_solenoid.set(!fresh_solenoid.get());
-  delay(100);
-  fresh_solenoid.set(!fresh_solenoid.get());
-  delay(50);
-  salt_solenoid.set(!salt_solenoid.get());
-  delay(50);
-  heater.set(!heater.get());
-  delay(500);
+  if(!thermister.is_in_tolerance()) {
+    heater.set(true);
+  } else {
+    heater.set(false);
+  }
+  if(salinometer.is_high()) {
+  } else if(salinometer.is_low()) {
+  } else {
+    salt_solenoid.set(false);
+    fresh_solenoid.set(false);
+  }
 }
