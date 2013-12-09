@@ -1,5 +1,4 @@
 Fish_Tank
 =========
 
-Arduino Code for maintaining the salinity and temperature of a water 
-vat.
+Arduino Code The Louisiana Tech ENGR 121 Winter Quarter Fishtank.

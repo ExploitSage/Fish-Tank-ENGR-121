@@ -6,25 +6,25 @@ Relay heater, salt_solenoid, fresh_solenoid;
 Salinometer salinometer;
 Thermister thermister;
 
-bool state = false;
-
 void setup() {
-  heater.init(11, false);
-  salt_solenoid.init(12, false);
+  heater.init(10, false);
+  salt_solenoid.init(11, false);
   fresh_solenoid.init(12, false);
   salinometer.init(0, 255, 767);
   thermister.init(0, 255, 767);
 }
 
 void loop() {
-  heater.set(state);
-  state = !state;
-  delay(1000);
-  
-  if(!salinometer.is_in_tolerance()) {
-    
-  }
-  if(!thermister.is_in_tolerance()) {
-    
-  }
+  heater.set(!heater.get());
+  delay(50);
+  salt_solenoid.set(!salt_solenoid.get());
+  delay(50);
+  fresh_solenoid.set(!fresh_solenoid.get());
+  delay(100);
+  fresh_solenoid.set(!fresh_solenoid.get());
+  delay(50);
+  salt_solenoid.set(!salt_solenoid.get());
+  delay(50);
+  heater.set(!heater.get());
+  delay(500);
 }
