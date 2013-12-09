@@ -1,13 +1,13 @@
-#ifndef Salinometer_h
-#define Salinometer_h
+#ifndef Thermister_h
+#define Thermister_h
 
 #include "Arduino.h"
 
-class Salinometer {
+class Thermister {
   public:
-    Salinometer();
-    Salinometer(uint8_t pin);
-    Salinometer(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit);
+    Thermister();
+    Thermister(uint8_t pin);
+    Thermister(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit);
     void init(uint8_t pin);
     void init(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit);
     uint16_t get_value();
