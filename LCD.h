@@ -28,14 +28,21 @@
 #define FOURTH_LINE 188
 
 #include "Arduino.h"
-
+#include <SoftwareSerial.h>
 class LCD {
   public:
     /**
-     * Constructor
+     * Empty Constructor, an init() method must be called before instance use
      * @since v1.0
      */
     LCD();
+    /**
+     * Contructor
+     * @param rx_pin Pin for Receiving Transmissions, not really used here
+     * @param tx_pin Pin used to Transmit Data to Display
+     */
+    LCD(uint8_t rx_pin, uint8_t tx_pin);
+    void init(uint8_t rx_pin, uint8_t tx_pin);
     /**
      * 
      * @since v1.0
@@ -48,6 +55,7 @@ class LCD {
     void print(float value);
     void print(float value, int decimals);
   private:
+    SoftwareSerial *display;
 };
 
 #endif

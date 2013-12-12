@@ -21,45 +21,63 @@
 /*             203=(3,15) 204=(3,16) 205=(3,17) 206=(3,18) 207=(3,19)        */
 
 LCD::LCD() {
-  Serial.begin(9600);
-  pinMode(1, OUTPUT);
-  Serial.write(CLEAR);
-  Serial.write(BACKLIGHT_ON);
-  Serial.write(CURSOR_OFF_NO_BLINK);
+  /*display->begin(9600);
+  //pinMode(1, OUTPUT);
+  display->write(CLEAR);
+  display->write(BACKLIGHT_ON);
+  display->write(CURSOR_OFF_NO_BLINK);*/
+}
+LCD::LCD(uint8_t rx_pin, uint8_t tx_pin) {
+  display = new SoftwareSerial(rx_pin, tx_pin);
+  display->begin(9600);
+  display->write(CLEAR);
+  display->write(BACKLIGHT_ON);
+  display->write(CURSOR_OFF_NO_BLINK);
+}
+
+void LCD::init(uint8_t rx_pin, uint8_t tx_pin) {
+  display = new SoftwareSerial(rx_pin, tx_pin);
+  display->begin(9600);
+  display->write(CLEAR);
+  display->write(BACKLIGHT_ON);
+  display->write(CURSOR_OFF_NO_BLINK);
 }
 
 void LCD::setup() {
-  Serial.write(FIRST_LINE);
-  Serial.write(" LCL    SP     UCL  ");
-  Serial.write(SECOND_LINE);
-  Serial.write("0.072  0.100  0.108 ");
-  Serial.write(THIRD_LINE);
-  Serial.write(" OFF   0.148   ON   ");
+  display->write(BACKLIGHT_ON);
+  display->write(FIRST_LINE);
+  display->write(" LCL    SP     UCL  ");
+  display->write(SECOND_LINE);
+  display->write("0.072  0.100  0.108 ");
+  display->write(THIRD_LINE);
+  display->write(" OFF   0.148   ON   ");
 }
 void LCD::update(float salt, float temp, bool heat) {
-  Serial.write(FOURTH_LINE);
-  Serial.write("S=");
-  Serial.print(salt, 3);
-  Serial.write("  T=");
-  Serial.print(temp, 3);
+  display->write(FOURTH_LINE);
+  display->write("S=");
+  display->print(salt, 0);
+  display->write(196);
+  display->write("T=");
+  display->print(temp, 0);
+  display->write(205);
   if(heat)
-    Serial.write(" ON ");
+    display->write("ON");
   else
-    Serial.write(" OFF");
+    display->write("OFF");
 }
 
 void LCD::write(int value) {
-  Serial.write(value);
+  display->write(value);
 }
 void LCD::write(String value) {
-  Serial.write((char*)value.c_str());
+  display->write((char*)value.c_str());
 }
 void LCD::print(int value) {
-  Serial.print(value);
+  display->print(value);
 }
 void LCD::print(float value) {
-  Serial.print(value);
+  display->print(value);
 }
 void LCD::print(float value, int decimals) {
-  Serial.print(value, decimals);
+  display->print(value, decimals);
 }
