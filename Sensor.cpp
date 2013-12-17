@@ -3,12 +3,23 @@
 Sensor::Sensor() {
   _init = false;
   _limits = false;
+  _read = false;
 }
 
 Sensor::Sensor(uint8_t pin) {
   _pin = pin;
   _init = true;
   _limits = false;
+  _read = false;
+}
+
+Sensor::Sensor(uint8_t pin, uint8_t read_pin) {
+  _pin = pin;
+  _read_pin = read_pin;
+  digitalWrite(_read_pin, OUTPUT);
+  _init = true;
+  _limits = false;
+  _read = true;
 }
 
 Sensor::Sensor(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit) {
@@ -17,12 +28,34 @@ Sensor::Sensor(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit) {
   _upper_limit = upper_limit;
   _init = true;
   _limits = true;
+  _read = false;
+}
+
+Sensor::Sensor(uint8_t pin, uint8_t read_pin, uint16_t lower_limit, uint16_t upper_limit) {
+  _pin = pin;
+  _read_pin = read_pin;
+  digitalWrite(_read_pin, OUTPUT);
+  _lower_limit = lower_limit;
+  _upper_limit = upper_limit;
+  _init = true;
+  _limits = true;
+  _read = true;
 }
 
 void Sensor::init(uint8_t pin) {
   _pin = pin;
   _init = true;
   _limits = false;
+  _read = false;
+}
+
+void Sensor::init(uint8_t pin, uint8_t read_pin) {
+  _pin = pin;
+  _read_pin = read_pin;
+  digitalWrite(_read_pin, OUTPUT);
+  _init = true;
+  _limits = false;
+  _read = true;
 }
 
 void Sensor::init(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit) {
@@ -31,14 +64,33 @@ void Sensor::init(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit) {
   _upper_limit = upper_limit;
   _init = true;
   _limits = true;
+  _read = false;
+}
+
+void Sensor::init(uint8_t pin, uint8_t read_pin, uint16_t lower_limit, uint16_t upper_limit) {
+  _pin = pin;
+  _read_pin = read_pin;
+  digitalWrite(_read_pin, OUTPUT);
+  _lower_limit = lower_limit;
+  _upper_limit = upper_limit;
+  _init = true;
+  _limits = true;
+  _read = true;
 }
 
 uint16_t Sensor::get_value() {
+  uint16_t result = 0;
   if(!_init) {
     return 0;
+  } else if(_read) {
+    digitalWrite(_read_pin, HIGH);
+    delay(100);
+    result = analogRead(_pin);
+    digitalWrite(_read_pin, LOW);
   } else {
-    return analogRead(_pin);
+    result = analogRead(_pin);
   }
+  return result;
 }
 bool Sensor::is_in_tolerance() {
   if(!_init && !_limits)

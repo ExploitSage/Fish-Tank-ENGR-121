@@ -9,12 +9,13 @@ Sensor thermister;
 LCD lcd;
 
 void setup() {
-  salt_solenoid.init(A0, false);
-  fresh_solenoid.init(A1, false);
-  heater.init(A2, false);
-  lcd.init(0,A3);
-  salinometer.init(4, 300, 750);
-  thermister.init(5, 400, 650);
+  salt_solenoid.init(12, false);      //Digital Pin 12
+  fresh_solenoid.init(11, false);     //Digital Pin 11
+  heater.init(10, false);             //Digital Pin 10
+  lcd.init(0,2);                      //Digital Pin 02
+  salinometer.init(1, A0, 300, 750);  //Analog  Pin 01
+                                      //Digital Pin A0
+  thermister.init(2, 400, 650);       //Analog  Pin 02
 }
 
 void loop() {
