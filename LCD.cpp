@@ -52,7 +52,7 @@ void LCD::setup() {
   display->write(THIRD_LINE);
   display->write(" OFF   0.148   ON   ");
 }
-void LCD::update(float salt, float temp, bool heat) {
+void LCD::update(double salt, double temp, bool heat) {
   display->write(FOURTH_LINE);
   display->write("S=");
   display->print(salt, 0);

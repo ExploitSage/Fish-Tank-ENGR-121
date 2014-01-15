@@ -3,7 +3,7 @@
  * Purpose: Wrapper for Voltage Divider Salinity Meter
  * 
  * @author <a href="mailto:gus3@michelfamily.org">Gustave A. Michel III</a>
- * @version 1.1 12/09/13
+ * @version 1.1_1 1/14/14
  * @license The GNU Pulic Liscense v3
  */
  #ifndef Sensor_h
