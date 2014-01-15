@@ -80,7 +80,7 @@ class Sensor {
      * Returns Analog Value of sensor
      * @return Value from 0 to 1023
      */
-    uint16_t get_value();
+    int get_value();
     /**
      * Checks if the value of the sensor is betweent the upper and lower limits
      * @return if the value is between the limits

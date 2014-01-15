@@ -41,19 +41,21 @@ class LCD {
      * @param rx_pin Pin for Receiving Transmissions, not really used here
      * @param tx_pin Pin used to Transmit Data to Display
      */
-    LCD(uint8_t rx_pin, uint8_t tx_pin);
-    void init(uint8_t rx_pin, uint8_t tx_pin);
+    LCD(int rx_pin, int tx_pin);
+    void init(int rx_pin, int tx_pin);
     /**
      * 
      * @since v1.0
      */
-    void update(float salt, float temp, bool heat);
+    void update(double salt, double temp, bool heat);
     void setup();
     void write(int value);
     void write(String value);
     void print(int value);
     void print(float value);
     void print(float value, int decimals);
+    void print(double value);
+    void print(double value, int decimals);
   private:
     SoftwareSerial *display;
 };

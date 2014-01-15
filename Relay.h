@@ -1,9 +1,9 @@
 /**
  * Relay.h
- * Purpose: Operate a 5v Relay.
+ * Purpose: Operate a 5v Relay (or Transister).
  * 
  * @author <a href="mailto:gus3@michelfamily.org">Gustave A. Michel III</a>
- * @version 1.0 12/07/13
+ * @version 1.1 01/09/14
  * @license The GNU Pulic Liscense v3
  */
  #ifndef Relay_h
@@ -45,10 +45,20 @@ class Relay {
      */
     void init(uint8_t pin, bool state);
     /**
-     * Sets state of Relay
+     * Set state of Relay
      * @since v1.0
      */
     void set(bool state);
+    /**
+     * Sets state of Relay to true
+     * @since v1.1
+     */
+    void open();
+    /**
+     * Sets state of Relay to false
+     * @since v1.1
+     */
+    void close();
     /**
      * Get current state of Relay
      * @return State of Relay

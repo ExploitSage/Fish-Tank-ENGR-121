@@ -37,6 +37,14 @@ void Relay::set(bool state) {
   }
 }
 
+void Relay::open() {
+  set(true);
+}
+
+void Relay::close() {
+  set(false);
+}
+
 bool Relay::get() {
     if(!_init) {
     return false;

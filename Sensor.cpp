@@ -16,7 +16,7 @@ Sensor::Sensor(uint8_t pin) {
 Sensor::Sensor(uint8_t pin, uint8_t read_pin) {
   _pin = pin;
   _read_pin = read_pin;
-  digitalWrite(_read_pin, OUTPUT);
+  pinMode(_read_pin, OUTPUT);
   _init = true;
   _limits = false;
   _read = true;
@@ -34,7 +34,7 @@ Sensor::Sensor(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit) {
 Sensor::Sensor(uint8_t pin, uint8_t read_pin, uint16_t lower_limit, uint16_t upper_limit) {
   _pin = pin;
   _read_pin = read_pin;
-  digitalWrite(_read_pin, OUTPUT);
+  pinMode(_read_pin, OUTPUT);
   _lower_limit = lower_limit;
   _upper_limit = upper_limit;
   _init = true;
@@ -52,7 +52,7 @@ void Sensor::init(uint8_t pin) {
 void Sensor::init(uint8_t pin, uint8_t read_pin) {
   _pin = pin;
   _read_pin = read_pin;
-  digitalWrite(_read_pin, OUTPUT);
+  pinMode(_read_pin, OUTPUT);
   _init = true;
   _limits = false;
   _read = true;
@@ -70,7 +70,7 @@ void Sensor::init(uint8_t pin, uint16_t lower_limit, uint16_t upper_limit) {
 void Sensor::init(uint8_t pin, uint8_t read_pin, uint16_t lower_limit, uint16_t upper_limit) {
   _pin = pin;
   _read_pin = read_pin;
-  digitalWrite(_read_pin, OUTPUT);
+  pinMode(_read_pin, OUTPUT);
   _lower_limit = lower_limit;
   _upper_limit = upper_limit;
   _init = true;
@@ -78,8 +78,8 @@ void Sensor::init(uint8_t pin, uint8_t read_pin, uint16_t lower_limit, uint16_t 
   _read = true;
 }
 
-uint16_t Sensor::get_value() {
-  uint16_t result = 0;
+int Sensor::get_value() {
+  int result = 0;
   if(!_init) {
     return 0;
   } else if(_read) {
@@ -96,7 +96,7 @@ bool Sensor::is_in_tolerance() {
   if(!_init && !_limits)
     return 0;
   else {
-    uint16_t value = get_value();
+    int value = get_value();
     if(value >= _lower_limit && value <= _upper_limit)
       return true;
     return false;

@@ -27,7 +27,7 @@ LCD::LCD() {
   display->write(BACKLIGHT_ON);
   display->write(CURSOR_OFF_NO_BLINK);*/
 }
-LCD::LCD(uint8_t rx_pin, uint8_t tx_pin) {
+LCD::LCD(int rx_pin, int tx_pin) {
   display = new SoftwareSerial(rx_pin, tx_pin);
   display->begin(9600);
   display->write(CLEAR);
@@ -35,7 +35,7 @@ LCD::LCD(uint8_t rx_pin, uint8_t tx_pin) {
   display->write(CURSOR_OFF_NO_BLINK);
 }
 
-void LCD::init(uint8_t rx_pin, uint8_t tx_pin) {
+void LCD::init(int rx_pin, int tx_pin) {
   display = new SoftwareSerial(rx_pin, tx_pin);
   display->begin(9600);
   display->write(CLEAR);
@@ -79,5 +79,11 @@ void LCD::print(float value) {
   display->print(value);
 }
 void LCD::print(float value, int decimals) {
+  display->print(value, decimals);
+}
+void LCD::print(double value) {
+  display->print(value);
+}
+void LCD::print(double value, int decimals) {
   display->print(value, decimals);
 }
