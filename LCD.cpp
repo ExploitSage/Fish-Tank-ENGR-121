@@ -21,11 +21,11 @@
 /*             203=(3,15) 204=(3,16) 205=(3,17) 206=(3,18) 207=(3,19)        */
 
 LCD::LCD() {
-  /*display->begin(9600);
+  display->begin(9600);
   //pinMode(1, OUTPUT);
   display->write(CLEAR);
   display->write(BACKLIGHT_ON);
-  display->write(CURSOR_OFF_NO_BLINK);*/
+  display->write(CURSOR_OFF_NO_BLINK);
 }
 LCD::LCD(int rx_pin, int tx_pin) {
   display = new SoftwareSerial(rx_pin, tx_pin);
