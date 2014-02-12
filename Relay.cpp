@@ -37,10 +37,16 @@ void Relay::set(bool state) {
   }
 }
 
+void Relay::on() {
+  set(true);
+}
 void Relay::open() {
   set(true);
 }
 
+void Relay::off() {
+  set(false);
+}
 void Relay::close() {
   set(false);
 }

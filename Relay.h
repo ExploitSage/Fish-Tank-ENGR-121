@@ -3,7 +3,7 @@
  * Purpose: Operate a 5v Relay (or Transister).
  * 
  * @author <a href="mailto:gus3@michelfamily.org">Gustave A. Michel III</a>
- * @version 1.1 01/09/14
+ * @version 1.2 02/06/14
  * @license The GNU Pulic Liscense v3
  */
  #ifndef Relay_h
@@ -49,6 +49,16 @@ class Relay {
      * @since v1.0
      */
     void set(bool state);
+    /**
+     * Sets state of Relay to true
+     * @since v1.2
+     */
+    void on();
+    /**
+     * Sets state of Relay to false
+     * @since v1.2
+     */
+     void off();
     /**
      * Sets state of Relay to true
      * @since v1.1
