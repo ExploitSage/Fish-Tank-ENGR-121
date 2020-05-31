@@ -1,5 +1,2 @@
-Fish_Tank
-=========
-
-Arduino Code The Louisiana Tech ENGR 121 Winter Quarter Fishtank.
-Attempts to maintain the Salinity and Temp of a Water Vat.
+# Fish-Tank-ENGR-121
+Arduino Project for maintaining the solidity and temperature of a water vat.
